@@ -45,29 +45,34 @@ def determinePoints(yourMove, result):
         points += 3
     
     return points
-    
 
+def determineTotalPoints(inputArray):
+    totalPoints = 0
 
-fileOutput = []
-with open('input.txt', 'r') as file:
-    fileOutput = file.readlines()
-
-totalPoints = 0
-
-for line in fileOutput:
+    for line in inputArray:
     # print(line)
-    split = line.replace("\n","").split(" ")
-    # print(split)
-    opponentMove = determineMove(split[0])
-    yourMove = determineMove(split[1])
+        split = line.replace("\n","").split(" ")
+        # print(split)
+        opponentMove = determineMove(split[0])
+        yourMove = determineMove(split[1])
 
-    result = determineResult(opponentMove, yourMove)
+        result = determineResult(opponentMove, yourMove)
 
-    points = determinePoints(yourMove, result)
+        points = determinePoints(yourMove, result)
 
-    totalPoints += points
+        totalPoints += points
 
-print("Total Points = " + str(totalPoints))
+    return totalPoints
+
+def main():
+    fileOutput = []
+    with open('input.txt', 'r') as file:
+        fileOutput = file.readlines()
+
+    print("Total Points = " + str(determineTotalPoints(fileOutput)))
+
+
+
 
 
     
